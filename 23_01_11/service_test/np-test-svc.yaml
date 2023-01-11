@@ -1,0 +1,15 @@
+# pod(label: app:np-test) - Deploy pods imperatively
+apiVersion: v1
+kind: Service
+metadata:
+  name: np-test-svc
+spec:
+  selector:
+    app: np-test
+  ports:
+    - name: test
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+  type: NodePort

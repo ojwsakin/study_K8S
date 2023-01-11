@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cordon
+  name: cordon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cordon
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cordon
+    spec:
+      containers:
+      - image: 192.168.0.195:5000/hnginx
+        name: hnginx
+        resources: {}
+status: {}

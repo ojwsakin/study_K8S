@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: pri-test
+spec:
+  selector: #복제할 대상을 '선택'
+    matchLabels: #매칭라벨은
+      app: test # app:test이다.
+  replicas: 2
+  template: #기존의 Pod 매니페스트 파일 형식과 같다.
+    metadata:
+      name: test
+      labels:
+        app: test #위에서 선택될 라벨
+    spec:
+      containers:
+        - name: test-container
+          image: 192.168.0.195:5000/nginx:latest
+
