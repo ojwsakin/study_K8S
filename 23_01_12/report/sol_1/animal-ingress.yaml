@@ -1,31 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-ingress
-  namespace: test
+  name: animal-ingress
+  namespace: animal
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  tls:
-    - hosts:
-        - kakao.com
-      secretName: kakao.com-tls
   rules:
-    - host: kakao.com 
+    - host: animal.com 
       http:
         paths:
-          - path: /nginx 
+          - path: /animal1
             pathType: Prefix
             backend:
               service:
-                name: basic-svc
+                name: animal1-svc
                 port:
                   number: 80
-          - path: /ipnginx
+          - path: /animal2
             pathType: Prefix
             backend:
               service:
-                name: ip-svc
+                name: animal2-svc
                 port:
                   number: 80

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: animal2-deploy
+  namespace: animal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: animal2
+  template:
+    metadata:
+      labels:
+        app: animal2
+    spec:
+      containers:
+        - name: animal1-contaimer
+          image: 192.168.0.160:4999/animal:2.0
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: animal2-svc
+  namespace: animal
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: animal2

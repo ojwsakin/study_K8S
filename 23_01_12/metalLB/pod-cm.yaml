@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-test
+spec:
+  containers:
+    - name: pod-cm
+      image: 192.168.0.195:5000/nginx
+      envFrom:
+         - configMapRef:
+             name: test1-cm
+         - configMapRef:
+             name: test2-cm
