@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: hnginx
+          image: 192.168.0.195:5000/hnginx
+          volumeMounts:
+           - name: nfs-volume-h
+             mountPath: /mnt
+      volumes:
+        - name: nfs-volume-h
+          persistentVolumeClaim:
+            claimName: pvc-h
